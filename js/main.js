@@ -5,7 +5,6 @@ makeTable = () => {
     if (errorMsg.getAttributeNames.length <= 1) {
         errorMsg.hidden = true;
     }
-    // errorMsg.removeAttribute("hidden");
     fetch(`http://ergast.com/api/f1/${season}/${round}/driverStandings.json`)
     .then(response => response.json())
     .then(data => {
@@ -28,11 +27,7 @@ makeTable = () => {
             let points = data.MRData.StandingsTable.StandingsLists[0].DriverStandings[i].points;
             let full_name = `${first_name} ${last_name}`
             const info = [full_name, nationality, sponsor, points]
-
-              
-            // if else
             
-            // let newrow = table.insertRow();
             for (let j = 0; j < info.length; j++) {
                 let cell = rows[i].insertCell();
                 if (j == 0) {
@@ -52,10 +47,8 @@ makeTable = () => {
 
         }
     }).catch(error => {
-        // let failure = document.createElement('h1');
         let errorMsg = document.getElementById("errorMsg");
         const myTable = document.getElementById("myTable");
-        // errorMsg.removeAttribute("hidden");
         errorMsg.hidden = false;
         myTable.hidden = true;
 
